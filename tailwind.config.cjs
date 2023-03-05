@@ -7,7 +7,8 @@ module.exports = {
     colors: {
       "primary": "#559e97",
       "secondary": "#717b78",
-      "white": "#FFFFFF"
+      "white": "#FFFFFF",
+      "red": "#c9121c"
     }
   },
   plugins: [],

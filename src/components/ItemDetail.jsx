@@ -1,6 +1,13 @@
 import ItemCount from "./ItemCount";
+import { useCartContext } from "../context/CartContext";
 
 const ItemDetail = ({ item }) => {
+  const { addToCart } = useCartContext()
+
+  const onAdd = (cantidad) => {
+    addToCart({...item, quantity: cantidad})
+  }
+  
   return (
     <div className="md:flex justify-center">
       <img
@@ -16,10 +23,7 @@ const ItemDetail = ({ item }) => {
         </p>
         <div className="flex flex-col items-center">
           {" "}
-          <ItemCount initialValue={1} />
-          <button className="pointer bg-secondary w-[70%] rounded-md p-2 text-center">
-            Añadir al carrito
-          </button>
+          <ItemCount initialValue={1} onAdd={onAdd} />
         </div>
       </div>
     </div>

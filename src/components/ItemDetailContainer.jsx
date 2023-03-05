@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { doc, getDoc, getFirestore } from "firebase/firestore"
 import ItemDetail from "./ItemDetail";
-import { gFetch } from "../utils/gFetch";
+import Loading from "./Loading";
 
 const ItemDetailContainer = () => {
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
   const { itemId } = useParams();
+  
   useEffect(() => {
-    gFetch()
-      .then((res) => {
-        const item = res.find((prod) => prod.id === itemId);
-        setProduct(item);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setLoading(false));
+    const db = getFirestore()
+    const query = doc(db, 'products', itemId);
+    getDoc(query)
+    .then(res => setProduct({id: res.id, ...res.data()}))
+    .catch(err => console.log(err))
+    .finally(() => setLoading(false));
   }, [itemId]);
 
   return loading ? (
-    <h2 className="text-center font-bold text-4xl
-    mt-8">Cargando...</h2>
+    <Loading />
   ) : (
     <div className="max-w-[96%] md:max-w-[95%] mx-auto my-5">
       <ItemDetail item={product} />
