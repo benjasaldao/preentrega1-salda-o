@@ -9,7 +9,6 @@ const Cart = () => {
   return (
     <>
       {cartList.length === 0 ? (
-        <>
           <div className="text-center">
             <h2
               className="font-bold text-4xl
@@ -23,7 +22,6 @@ const Cart = () => {
               </button>
             </Link>
           </div>
-        </>
       ) : (
         <>
           <div className="container px-5">
