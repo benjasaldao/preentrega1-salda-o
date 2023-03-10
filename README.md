@@ -1,5 +1,5 @@
 # Ecommerce React JS
-Proyecto final del curso de React
+Proyecto final del curso de React de Corderhouse
 
 ## Instalacion de dependencias
 Previo a correr el proyecto en nuestro entorno es necesario instalar las dependencias de este con el siguiente comando:
